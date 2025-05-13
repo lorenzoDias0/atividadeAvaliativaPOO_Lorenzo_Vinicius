@@ -1,25 +1,29 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-
-public class Main{
-final static Scanner INPUT = new Scanner(System.in);
+public class Main {
+    final static Scanner INPUT = new Scanner(System.in);
     public static void main(String[] args) {
-        LocalDate data = LocalDate.MAX;
-        DateTimeFormatter formatador = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        System.out.println("Ditige uma data seguindo o padrão(dd/MM/yyyy), inclua as barras (/): ");
-        String usuarioData = INPUT.nextLine();
-        
+
         try {
-            data = LocalDate.parse(usuarioData, formatador);
-            String formattedDate = data.format(formatador);
-            System.out.println(formattedDate);
-        } catch (Exception e) {
-            System.out.println("Erro!!!\n--Você digitou a data com o formato errado--");
+            System.out.print("Digite o nome do personagem: ");
+            String nome = INPUT.nextLine();
+
+            System.out.print("Escolha o tipo (GUERREIRO, MAGO, ARQUEIRO): ");
+            String tipoInput = INPUT.nextLine().toUpperCase();
+            Personagem.TipoPersonagem tipo = Personagem.TipoPersonagem.valueOf(tipoInput);
+
+            System.out.print("Digite a vida (número inteiro): ");
+            Integer vida = Integer.parseInt(INPUT.nextLine());
+
+            System.out.print("Digite a força (número decimal): ");
+            Double forca = Double.parseDouble(INPUT.nextLine());
+
+            Personagem p = new Personagem(nome, tipo, vida, forca);
+            p.exibirStatus();
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Tipo de personagem inválido.");
             main(args);
         }
-        Integer dia = Integer.parseInt(usuarioData.substring(0, 2));
-        System.out.println(dia);
     }
 }
