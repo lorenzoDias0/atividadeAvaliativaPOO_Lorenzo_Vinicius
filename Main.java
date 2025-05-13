@@ -21,9 +21,12 @@ public class Main {
             Personagem p = new Personagem(nome, tipo, vida, forca);
             p.exibirStatus();
 
-        } catch (IllegalArgumentException e) {
-            System.out.println("Tipo de personagem inválido.");
-            main(args);
+        }catch (IllegalArgumentException e) {
+            System.out.println("Tipo de personagem inválido.\n\nLog do ERRO:");
+            //main(args);
+            throw e;
+        }finally{
+            System.out.println("\nFinalizando tentativa de criação do personagem.");
         }
     }
 }
