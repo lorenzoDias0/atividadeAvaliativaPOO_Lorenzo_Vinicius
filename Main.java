@@ -19,5 +19,7 @@ final static Scanner INPUT = new Scanner(System.in);
             System.out.println("Erro!!!\n--Você digitou a data com o formato errado--");
             main(args);
         }
+        Integer dia = Integer.parseInt(usuarioData.substring(0, 2));
+        System.out.println(dia);
     }
 }
